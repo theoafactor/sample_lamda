@@ -13,6 +13,7 @@ def lambda_handler(event, context):
    
     # Get the object placed within the bucket 
     photo = event['Records'][0]['s3']['object']['key']
+    # it is ok to pull
 
     response = client.detect_labels(Image = {"S3Object": {"Bucket": bucket, "Name": photo}}, MaxLabels = 3)
     print('Detected labels for ' + event) 

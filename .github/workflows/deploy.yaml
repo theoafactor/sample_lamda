@@ -22,3 +22,7 @@ jobs:
             - name: "Checks if this works"
               run: | 
                 echo "Everything works fine"
+
+            - name: 'Convert to zip format'
+              run: | 
+                zip -j test.zip ./code.py

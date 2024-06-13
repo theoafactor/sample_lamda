@@ -5,9 +5,16 @@ import boto3
 
 def lambda_handler(event, context):
     # TODO implement
-    client = boto3.client("rekognition")
-    response = client.detect_labels(Image = {"S3Object": {"Bucket": "bucketname", "Name": "object_name"}}, MaxLabels = 3)
-    print('Detected labels for ' + photo) 
+    client = boto3.client("rekognition") 
+
+    ## get the name of the bucket and object
+    bucket = event['Records'][0]['s3']['bucket']['name']
+   
+    # Get the object placed within the bucket 
+    photo = event['Records'][0]['s3']['object']['key']
+
+    response = client.detect_labels(Image = {"S3Object": {"Bucket": bucket, "Name": photo}}, MaxLabels = 3)
+    print('Detected labels for ' + event) 
     print()   
     for label in response['Labels']:
         print ("Label: " + label['Name'])

@@ -6,12 +6,14 @@ import boto3
 def lambda_handler(event, context):
     # TODO implement
     client = boto3.client("rekognition") 
+    # it is a list of events on seun
 
     ## get the name of the bucket and object
     bucket = event['Records'][0]['s3']['bucket']['name']
    
     # Get the object placed within the bucket 
     photo = event['Records'][0]['s3']['object']['key']
+    # it is ok to pull
 
     response = client.detect_labels(Image = {"S3Object": {"Bucket": bucket, "Name": photo}}, MaxLabels = 3)
     print('Detected labels for ' + event) 

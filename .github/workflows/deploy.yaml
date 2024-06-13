@@ -26,3 +26,5 @@ jobs:
             - name: 'Convert to zip format'
               run: | 
                 zip -j test.zip ./code.py
+
+                aws lambda update-function-code --function-name corecycloboldlambda100 --zip-file test.zip

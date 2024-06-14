@@ -21,7 +21,7 @@ jobs:
 
             - name: "Creates a role"
               run: |
-                #aws iam create-role --role-name testrole8 --assume-role-policy-document file://sample.json
+                aws iam create-role --role-name testrole8 --assume-role-policy-document file://sample.json
 
             - name: "Creates a function"
               run: |

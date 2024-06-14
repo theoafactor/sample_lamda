@@ -27,7 +27,7 @@ jobs:
               run: |
                 zip -j init.zip ./initcode.py
 
-                aws lambda create-function --function-name testfunction --runtime python3.9 --role arn:aws:iam::373550324447:role/testrole8 --zip-file fileb://init.zip
+                aws lambda create-function --function-name testfunction --runtime python3.9 --role arn:aws:iam::373550324447:role/testrole8 --runtime python3.9 --handler testfunction.handler  --zip-file fileb://init.zip
                 test.zip 
             - name: "Checks if this works"
               run: | 

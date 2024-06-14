@@ -19,6 +19,14 @@ jobs:
                 aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
                 aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
 
+            - name: "Creates a role"
+              run: |
+                #aws iam create-role --role-name testrole8 --assume-role-policy-document file://sample.json
+
+            - name: "Creates a function"
+              run: |
+                aws lambda create-function --function-name testfunction --runtime python3.9 --role arn:aws:iam::373550324447:role/testrole8 --zip-file fileb://tester.zip
+
             - name: "Checks if this works"
               run: | 
                 echo "Everything works fine"
@@ -27,4 +35,4 @@ jobs:
               run: | 
                 zip -j test.zip ./code.py
 
-                aws lambda update-function-code --function-name corecycloboldlambda100 --zip-file fileb://test.zip
+                #aws lambda update-function-code --function-name corecycloboldlambda100 --zip-file fileb://test.zip
